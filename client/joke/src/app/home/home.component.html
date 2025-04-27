@@ -1,12 +1,17 @@
-<h2>Testing</h2>
-
-<p>Setup: {{joke?.setup}}</p>
-<p *ngIf="this.showPunchline">Punchline: {{joke?.punchline}}</p>
-
-<div>
-    <button (click)="showAnswer()" >Answer</button>
-</div>
-
-<div>
-    <button (click)="newJoke()">New Joke</button>
-</div>
+<div class="joke-container">
+    <h1>Generate a Random Joke</h1>
+  
+    <div class="joke-card">
+      <h2 *ngIf="joke">{{ joke.setup }}</h2>
+  
+      <p *ngIf="showPunchline" class="punchline">
+        {{ joke?.punchline }}
+      </p>
+  
+      <div class="button-group">
+        <button (click)="showAnswer()" class="btn btn-primary">Show Punchline</button>
+        <button (click)="newJoke()" class="btn btn-secondary">New Joke</button>
+      </div>
+    </div>
+  </div>
+  
