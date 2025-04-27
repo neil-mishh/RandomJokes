@@ -13,9 +13,20 @@ builder.Services.AddHttpClient<IJokeService, JokeService>(client =>
 {
     client.BaseAddress = new Uri("https://official-joke-api.appspot.com/");
 });
-//builder.Services.AddScoped<IJokeService, JokeService>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalHost",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
+
+app.UseCors("AllowLocalHost");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

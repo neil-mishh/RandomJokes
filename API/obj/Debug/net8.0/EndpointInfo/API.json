@@ -16,17 +16,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Joke"
+                  "$ref": "#/components/schemas/JokeDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Joke"
+                  "$ref": "#/components/schemas/JokeDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Joke"
+                  "$ref": "#/components/schemas/JokeDTO"
                 }
               }
             }
@@ -47,7 +47,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Joke"
+                    "$ref": "#/components/schemas/JokeDTO"
                   }
                 }
               },
@@ -55,7 +55,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Joke"
+                    "$ref": "#/components/schemas/JokeDTO"
                   }
                 }
               },
@@ -63,7 +63,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Joke"
+                    "$ref": "#/components/schemas/JokeDTO"
                   }
                 }
               }
@@ -75,23 +75,13 @@
   },
   "components": {
     "schemas": {
-      "Joke": {
+      "JokeDTO": {
         "required": [
-          "id",
           "punchline",
-          "setup",
-          "type"
+          "setup"
         ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "type": {
-            "type": "string",
-            "nullable": true
-          },
           "setup": {
             "type": "string",
             "nullable": true

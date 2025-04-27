@@ -1,1 +1,12 @@
 <h2>Testing</h2>
+
+<p>Setup: {{joke?.setup}}</p>
+<p *ngIf="this.showPunchline">Punchline: {{joke?.punchline}}</p>
+
+<div>
+    <button (click)="showAnswer()" >Answer</button>
+</div>
+
+<div>
+    <button (click)="newJoke()">New Joke</button>
+</div>

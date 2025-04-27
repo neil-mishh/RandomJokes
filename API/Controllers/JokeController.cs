@@ -1,6 +1,5 @@
+using API.DTOs;
 using API.Interfaces;
-using API.Models;
-using API.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -19,17 +18,27 @@ namespace API.Controllers
         }
 
         [HttpGet("random_joke")]
-        public async Task<Joke> GetRandomJoke()
+        public async Task<JokeDTO> GetRandomJoke()
         {
             var result = await _jokeService.GetRandomJoke();
-            return result;
+            var jokeDTO = new JokeDTO
+            {
+                Setup = result.Setup,
+                Punchline = result.Punchline
+            };
+            return jokeDTO;
         }
 
         [HttpGet("random_ten")]
-        public async Task<List<Joke>> GetRandomTen()
+        public async Task<List<JokeDTO>> GetRandomTen()
         {
             var result = await _jokeService.GetTenRandomJokes();
-            return result;
+            var jokeDTOs = result.Select(joke => new JokeDTO
+            {
+                Setup = joke.Setup,
+                Punchline = joke.Punchline
+            }).ToList();
+            return jokeDTOs;
         }
     }
 }

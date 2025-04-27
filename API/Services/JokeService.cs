@@ -1,6 +1,5 @@
 ﻿using API.Interfaces;
 using API.Models;
-using System.Net.Http.Json;
 
 namespace API.Services
 {
