@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "API.Controllers.JokeController",
+    "Method": "GetRandomJoke",
+    "RelativePath": "Joke/random_joke",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
