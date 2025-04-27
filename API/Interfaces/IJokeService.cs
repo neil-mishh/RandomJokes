@@ -5,7 +5,7 @@ namespace API.Interfaces
 {
     public interface IJokeService
     {
-        Task<HttpResponseMessage> GetRandomJoke();
-        Task<HttpResponseMessage> GetTenRandomJokes();
+        Task<Joke> GetRandomJoke();
+        Task<List<Joke>> GetTenRandomJokes();
     }
 }

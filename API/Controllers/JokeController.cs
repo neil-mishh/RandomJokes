@@ -1,3 +1,5 @@
+using API.Interfaces;
+using API.Models;
 using API.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,24 +9,27 @@ namespace API.Controllers
     [Route("[controller]")]
     public class JokeController : ControllerBase
     {
-        private readonly ILogger _logger;
-        private readonly JokeService _jokeService;
+        private readonly ILogger<JokeController> _logger;
+        private readonly IJokeService _jokeService;
 
-        public JokeController(
-            ILogger logger,
-            JokeService jokeService
-            )
+        public JokeController(ILogger<JokeController> logger, IJokeService jokeService)
         {
             _logger = logger;
             _jokeService = jokeService;
-
         }
 
         [HttpGet("random_joke")]
-        public async Task<IActionResult> GetRandomJoke()
+        public async Task<Joke> GetRandomJoke()
         {
             var result = await _jokeService.GetRandomJoke();
-            return Ok(result);
+            return result;
+        }
+
+        [HttpGet("random_ten")]
+        public async Task<List<Joke>> GetRandomTen()
+        {
+            var result = await _jokeService.GetTenRandomJokes();
+            return result;
         }
     }
 }

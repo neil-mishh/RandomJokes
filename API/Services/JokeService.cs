@@ -1,33 +1,27 @@
 ﻿using API.Interfaces;
 using API.Models;
-using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Json;
 
 namespace API.Services
 {
     public class JokeService : IJokeService
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<JokeService> _logger;
         private readonly HttpClient _http;
-        private readonly IConfiguration _configuration;
-        public JokeService(
-            ILogger logger,
-            HttpClient http,
-            IConfiguration configuration
-            )
+        public JokeService(ILogger<JokeService> logger, HttpClient http)
         {
             _logger = logger;
             _http = http;
-            _configuration = configuration;
         }
-        public async Task<HttpResponseMessage> GetRandomJoke()
+        public async Task<Joke> GetRandomJoke()
         {
-            var response = await _http.GetAsync($"{_configuration.GetSection("BaseURI")}random_joke");
-            return response;
+            var joke = await _http.GetFromJsonAsync<Joke>("random_joke");
+            return joke;
         }
-        public async Task<HttpResponseMessage> GetTenRandomJokes()
+        public async Task<List<Joke>> GetTenRandomJokes()
         {
-            var response = await _http.GetAsync($"{_configuration.GetSection("BaseURI")}random_ten");
-            return response;
+            var joke = await _http.GetFromJsonAsync<List<Joke>>("random_ten");
+            return joke;
         }
     }
 }

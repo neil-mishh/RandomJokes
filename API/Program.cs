@@ -1,3 +1,6 @@
+using API.Interfaces;
+using API.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,8 +9,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHttpClient();
-builder.Services.AddScoped<API.Interfaces.IJokeService, API.Services.JokeService>();
+builder.Services.AddHttpClient<IJokeService, JokeService>(client =>
+{
+    client.BaseAddress = new Uri("https://official-joke-api.appspot.com/");
+});
+//builder.Services.AddScoped<IJokeService, JokeService>();
 
 var app = builder.Build();
 
